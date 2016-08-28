@@ -1,0 +1,21 @@
+var data =	{
+	"glossary" :{
+
+		"items":
+			[
+				{
+					"item_id": 1,
+					"characters": "阿姨",
+					"pron":"āyí",
+					"translation": "maternal aunt; step-mother; childcare worker; nursemaid; woman of similar age to one's parents (term of address used by child); CL:個|个[ge4]"
+				},
+				{
+					"item_id": 2,
+					"characters": "办公室",
+					"pron":"bàngōngshì",
+					"translation": "an office; business premises; a bureau; CL:間|间[jian1]"
+				}
+			]
+		
+	}
+};

@@ -1,0 +1,83 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background-color: green;
+	font-family: Verdana, Arial;
+	font-size: 18px;
+}
+
+header {position: fixed;
+top:0;
+left: 0;
+height: 15%;
+width: 100%;
+font-size: 6rem;
+color: white;
+padding: 30px 45px;
+box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+background-color: #8dabff;}
+
+p {font-size: 1rem;}
+
+.container {
+	position: absolute;
+	top: 15%;
+	width: 100%;
+	background-color: #cbc9c8;
+	min-height: 400px;
+	height: 85%;
+}
+
+button {
+	padding: 30px 15px;
+	border: none;
+	font-size: 2em;
+}
+
+.prev, .next {
+	position: relative;
+	top: 0;
+	height: 20%;
+	width: 50%
+}
+
+.prev {
+	background-color: #dd8dff;
+}
+
+.next {
+	background-color: #c97beb;
+}
+
+button.char {
+	position: absolute;
+	right: 0;
+	top:20%;
+	height: 20%;
+	width: 25%;
+	background-color: #ffab8d;
+}
+
+button.char:active {
+	background-color: #de8e71;
+}
+
+main {width: 85%;}
+
+.word-item:first-child {
+	font-size: 6rem;
+}
+.word-item {
+	width: 80%;
+	margin: 30px;
+	font-size: 30px;
+}
+
+@media screen and (max-device-width:360px) and (orientation: portrait) {
+
+	.word-item:first-child {
+		border-bottom: 2px black dotted;
+		font-size: 8rem;
+	}	
+}
