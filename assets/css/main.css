@@ -44,18 +44,18 @@ button {
 	font-size: 2em;
 }
 
-.prev, .next {
+.prev_btn, .next_btn {
 	position: relative;
 	top: 0;
 	height: 20%;
 	width: 50%
 }
 
-.prev {
+.prev_btn {
 	background-color: #dd8dff;
 }
 
-.next {
+.next_btn {
 	background-color: #c97beb;
 }
 
@@ -100,7 +100,7 @@ button.answer :active {
 main {width: 85%;}
 
 .word-item:first-child {
-	font-size: 6rem;
+	font-size: 6.3rem;
 }
 .word-item {
 	width: 80%;
@@ -114,4 +114,19 @@ main {width: 85%;}
 		border-bottom: 2px black dotted;
 		font-size: 8rem;
 	}	
+}
+
+.progress {
+	background-color: #a6a6a6;
+	float: left;
+	position: relative;
+	left: 0;
+	width: 0;
+	height: 3px;
+	animation: showprogress 7s linear forwards;
+}
+
+@keyframes showprogress {
+	0% {width: 0;}
+	100% {width: 100%;}
 }
