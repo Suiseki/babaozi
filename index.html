@@ -5,28 +5,30 @@
 		<title>strona startowa</title>
 		<link rel="stylesheet" href="assets/css/main.css">
 		<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-		<script src ="data/hsk.json"></script>
+		<script src ="data/hsk20160901.json"></script>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext" rel="stylesheet">
 
 	</head>
 
 	<body>
 
 	<header>
-
-	baBaozi
-	<p>little chinese learning app</p>
+		<h2>baBaozi</h2>
+		<p>little chinese learning app</p>
 	</header>
 
 	<div class="container">
-		<row><button class="prev">prev</button><button class="next">next</button></row>
-		<row>
+		<div class="row"><button class="prev">prev</button><button class="next">next</button></div>
+		<div class="row">
 			<main>
 			<div id="chinese_char" class="word-item">we</div>
 			<div id="pronunciation" class="word-item"></div>
 			<div id="translations" class="word-item"></div>
 			</main>
-			<button class="char">char</button>
-		</row>
+			<button class="char_btn">char</button>
+			<button class="pron_btn">pron</button>
+			<button class="answer_btn">show answer</button>
+		</div>
 	</div>
 
 		<script src ="assets/js/main.js"></script>

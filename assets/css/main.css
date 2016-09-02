@@ -3,21 +3,30 @@ html, body {
 	height: 100%;
 	margin: 0;
 	background-color: green;
-	font-family: Verdana, Arial;
-	font-size: 18px;
 }
 
-header {position: fixed;
-top:0;
-left: 0;
-height: 15%;
-width: 100%;
-font-size: 6rem;
-color: white;
-padding: 30px 45px;
-box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
-background-color: #8dabff;}
+body {
+	font-family: Verdana, Arial;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
 
+}
+
+header {
+	position: fixed;
+	top:0;
+	left: 0;
+	height: 15%;
+	width: 100%;
+	font-size: 6em;
+	color: white;
+	padding: 12px 45px;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+	background-color: #8dabff;
+}
+
+h2 {
+	font-size: 2.5rem;}
 p {font-size: 1rem;}
 
 .container {
@@ -28,7 +37,7 @@ p {font-size: 1rem;}
 	min-height: 400px;
 	height: 85%;
 }
-
+/*navigation*/
 button {
 	padding: 30px 15px;
 	border: none;
@@ -50,7 +59,7 @@ button {
 	background-color: #c97beb;
 }
 
-button.char {
+button.char_btn {
 	position: absolute;
 	right: 0;
 	top:20%;
@@ -59,8 +68,33 @@ button.char {
 	background-color: #ffab8d;
 }
 
-button.char:active {
+button.char_btn:active {
 	background-color: #de8e71;
+}
+
+.pron_btn {
+	position: absolute;
+	right: 0;
+	top:40%;
+	height: 20%;
+	width: 25%;
+	background-color: #cc8971;
+}
+
+button.pron_btn :active {
+	background-color: #b17863;
+}
+
+.answer_btn {
+	position: absolute;
+	left: 0;
+	bottom:0;
+	height: 20%;
+	width: 100%;
+	background-color: #848484;
+}
+button.answer :active {
+	background-color: #a5a5a5;
 }
 
 main {width: 85%;}
