@@ -27,7 +27,7 @@ header {
 
 h2 {
 	font-size: 2.5rem;}
-p {font-size: 1rem;}
+p {font-size: 1.2rem;}
 
 .container {
 	position: absolute;
@@ -44,19 +44,37 @@ button {
 	font-size: 2em;
 }
 
-.prev_btn, .next_btn {
+.prev_btn, .first_btn , .next_btn {
 	position: relative;
+	display: table-cell;
 	top: 0;
 	height: 20%;
-	width: 50%
+	width: 33%;
+	float: left;
+	margin:0;
+	border-collapse: collapse;
+}
+
+.first_btn {
+	width: 33.8%;
 }
 
 .prev_btn {
 	background-color: #dd8dff;
 }
-
+.first_btn {
+	background-color: #dd8dff;
+}
 .next_btn {
+	background-color: #dd8dff;
+}
+
+.prev_btn:active, .first_btn:active, .next_btn:active {
 	background-color: #c97beb;
+}
+
+.prev_btn, .first_btn {
+	border-right: 1px solid #5f3073;
 }
 
 button.char_btn {
@@ -81,7 +99,7 @@ button.char_btn:active {
 	background-color: #cc8971;
 }
 
-button.pron_btn :active {
+button.pron_btn:active {
 	background-color: #b17863;
 }
 
@@ -93,8 +111,9 @@ button.pron_btn :active {
 	width: 100%;
 	background-color: #848484;
 }
-button.answer :active {
-	background-color: #a5a5a5;
+button.answer_btn:active {
+	color:#a6a6a6;
+	background-color: #6d6c6c;
 }
 
 main {width: 85%;}
@@ -106,6 +125,14 @@ main {width: 85%;}
 	width: 80%;
 	margin: 30px;
 	font-size: 30px;
+}
+.word-item_id {
+	position: absolute;
+	right: 40%;
+	bottom: 25%;
+	font-size: 1.6rem;
+	color: #9c9c9c;
+	z-index: 5;
 }
 
 @media screen and (max-device-width:360px) and (orientation: portrait) {
@@ -123,7 +150,7 @@ main {width: 85%;}
 	left: 0;
 	width: 0;
 	height: 3px;
-	animation: showprogress 7s linear forwards;
+	animation: showprogress 6s linear forwards;
 }
 
 @keyframes showprogress {
