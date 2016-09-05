@@ -77,12 +77,15 @@ button {
 	border-right: 1px solid #5f3073;
 }
 
-button.char_btn {
+.draw_btn_group {
 	position: absolute;
 	right: 0;
-	top:20%;
 	height: 20%;
 	width: 25%;
+}
+
+button.char_btn {
+	top:20%;
 	background-color: #ffab8d;
 }
 
@@ -91,16 +94,21 @@ button.char_btn:active {
 }
 
 .pron_btn {
-	position: absolute;
-	right: 0;
 	top:40%;
-	height: 20%;
-	width: 25%;
 	background-color: #cc8971;
 }
 
 button.pron_btn:active {
 	background-color: #b17863;
+}
+
+.transl_btn {
+	top:60%;
+	background-color: #a9705c;
+}
+
+.transl_btn:active {
+	background-color: #825444;
 }
 
 .answer_btn {
@@ -124,6 +132,7 @@ main {width: 85%;}
 .word-item {
 	width: 80%;
 	margin: 30px;
+	clear: left;
 	font-size: 30px;
 }
 .word-item_id {
@@ -151,6 +160,7 @@ main {width: 85%;}
 	width: 0;
 	height: 3px;
 	animation: showprogress 6s linear forwards;
+	clear: both;
 }
 
 @keyframes showprogress {

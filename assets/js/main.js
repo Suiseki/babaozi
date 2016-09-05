@@ -9,6 +9,7 @@ var first_btn = document.querySelector('.first_btn ');
 var next_btn = document.querySelector('.next_btn');
 var char = document.querySelector('.char_btn');
 var draw_pron = document.querySelector('.pron_btn');
+var draw_transl = document.querySelector('.transl_btn');
 var answer = document.querySelector('.answer_btn');
 var words_count = Object.keys(data.glossary.items).length;
 var current_id =0;
@@ -22,16 +23,20 @@ var data_pairs = {
 // console.log("test", words_count, current_transl);
 
 var fill_output = function (fill_type) {
+	clearTimeout(later_answer);
 
-	//todo
 	if(fill_type === 'char'){
 		current_word.innerHTML = data.glossary.items[current_id].characters;
 		current_pron.innerHTML = '';
 		current_transl.innerHTML = '<hr class="progress">';
 		postpone_answer();
 		
+	} else if (fill_type === 'transl') {
+		current_word.innerHTML = '';
+		current_pron.innerHTML = '<hr class="progress">';
+		current_transl.innerHTML = data.glossary.items[0].translation;
+		postpone_answer();
 	} else if (fill_type === 0) {
-		console.log("pierwsze: " + current_id);
 		current_word.innerHTML = data.glossary.items[0].characters;
 		current_pron.innerHTML = data.glossary.items[current_id].pron;
 		current_transl.innerHTML = '<hr class="progress">';
@@ -44,18 +49,18 @@ var fill_output = function (fill_type) {
 	}
 		current_itemid.innerHTML = '';
 
+
 }
 
 var draw_element = function (btn_hit) {
-
 	current_id = btn_hit !== 0 ? Math.floor(Math.random() * words_count) : 0;
-	console.log("current id: " + current_id);
 	fill_output(btn_hit);
 };
 
 var postpone_answer = function () {
 	later_answer = window.setTimeout(function(){
 		show_answer();
+
 	},6000);
 }
 
@@ -65,7 +70,7 @@ var show_answer = function () {
 	current_pron.innerHTML = data.glossary.items[current_id].pron;
 	current_transl.innerHTML = data.glossary.items[current_id].translation;
 	current_itemid.innerHTML = data.glossary.items[current_id].item_id;
-	console.log("word: " + data.glossary.items[current_id].item_id, current_itemid);
+	//console.log("word: " + data.glossary.items[current_id].item_id, current_itemid);
 	clearTimeout(later_answer);
 
 }
@@ -80,13 +85,13 @@ var make_step = function (step) {
 		current_id = 0;
 		}
 	}
-	console.log('next current_id: ',current_id);
 	fill_output('char');
 }
 
 fill_output('char');
 char.addEventListener('click', draw_element.bind(null,'char'), false);
 draw_pron.addEventListener('click', draw_element.bind(null,'pron'), false);
+draw_transl.addEventListener('click', draw_element.bind(null,'transl'), false);
 answer.addEventListener('click', show_answer, false);
 prev_btn.addEventListener('click', make_step.bind(null,-1), false);
 first_btn.addEventListener('click', draw_element.bind(null,0), false);
