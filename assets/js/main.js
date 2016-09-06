@@ -34,8 +34,9 @@ var fill_output = function (fill_type) {
 	} else if (fill_type === 'transl') {
 		current_word.innerHTML = '';
 		current_pron.innerHTML = '<hr class="progress">';
-		current_transl.innerHTML = data.glossary.items[0].translation;
+		current_transl.innerHTML = data.glossary.items[current_id].translation;
 		postpone_answer();
+		
 	} else if (fill_type === 0) {
 		current_word.innerHTML = data.glossary.items[0].characters;
 		current_pron.innerHTML = data.glossary.items[current_id].pron;
@@ -70,7 +71,7 @@ var show_answer = function () {
 	current_pron.innerHTML = data.glossary.items[current_id].pron;
 	current_transl.innerHTML = data.glossary.items[current_id].translation;
 	current_itemid.innerHTML = data.glossary.items[current_id].item_id;
-	//console.log("word: " + data.glossary.items[current_id].item_id, current_itemid);
+	// console.log("word: " + data.glossary.items[current_id].item_id, current_itemid);
 	clearTimeout(later_answer);
 
 }
