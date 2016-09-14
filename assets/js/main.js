@@ -13,6 +13,10 @@ var draw_transl = document.querySelector('.transl_btn');
 var answer = document.querySelector('.answer_btn');
 var words_count = Object.keys(data.glossary.items).length;
 var current_id =0;
+//manage word range selector
+var starting_word = 0;
+var last_word = words_count;
+
 var later_answer;
 var data_pairs = {
 	"cword": [current_word, 'characters'],
@@ -54,8 +58,11 @@ var fill_output = function (fill_type) {
 }
 
 var draw_element = function (btn_hit) {
-	current_id = btn_hit !== 0 ? Math.floor(Math.random() * words_count) : 0;
+	console.log("zasięg: " + starting_word, last_word);
+	var rand_last = Math.random() * 99;
+	current_id = btn_hit !== 0 ? Math.floor( starting_word + rand_last) : 0;
 	fill_output(btn_hit);
+	console.log("crnt: " + rand_last, current_id);
 };
 
 var postpone_answer = function () {
@@ -98,3 +105,15 @@ prev_btn.addEventListener('click', make_step.bind(null,-1), false);
 first_btn.addEventListener('click', draw_element.bind(null,0), false);
 next_btn.addEventListener('click', make_step.bind(null,1), false);
 
+// range select
+var range_btns = document.querySelectorAll('aside li');
+// todo
+//let is not supported in all browsers, provide polyfill
+for (let i = 0; i<range_btns.length; i++) {
+	console.log("opis elementu: ", i);
+	range_btns[i].addEventListener('click', function (){
+		console.log("kliknięto range: ", i*100, i*100+99);
+		starting_word = i*100;
+		last_word = i*100+99;
+	}, false);
+}

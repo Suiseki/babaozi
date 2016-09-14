@@ -171,3 +171,22 @@ main {width: 85%;}
 	0% {width: 0;}
 	100% {width: 100%;}
 }
+
+/*aside*/
+
+     /*****/
+   /*******/
+  /**/  /**/
+ /*********/
+/**/   /**/
+/**/   /**/
+
+aside {
+	position: absolute;
+	top: 5px;
+	right: 0;
+	width:30vw;
+	height: 40vh;
+	background-color: white;
+	z-index: 2;
+}
