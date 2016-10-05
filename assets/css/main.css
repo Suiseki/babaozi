@@ -182,11 +182,113 @@ main {width: 85%;}
 /**/   /**/
 
 aside {
-	position: absolute;
+	position: fixed;
 	top: 5px;
 	right: 0;
-	width:30vw;
-	height: 40vh;
-	background-color: white;
+	width:40vw;
+	/*height: 65vh;*/
+	/*overflow: hidden;*/
 	z-index: 2;
 }
+
+ul.sidebar-nav{
+	position: relative;
+	width: 100%;
+	top:20px;
+	right: -100%;
+	margin-top: 10vh;
+	list-style-type: none;
+	transition-duration: 0.3s;
+	height: 20px;
+}
+
+
+ul.sideMenuIn{
+	right: 0;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	/*animation: slidein-a 400ms ease-in normal forwards;*/
+
+}
+
+.sideMenuOut{
+/*	right: -100%;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;*/
+	/*animation: slidein-b 700ms ease-in reverse both;*/
+}
+
+@keyframes slidein-a {
+	0%{right: -100%; display: none;}
+	1% {display: block;}
+	100%{display: block; right: 3%;}
+}
+
+
+@keyframes slidein-b {
+	0%{right: -100%; display: none;}
+	1% {display: block;}
+	100%{display: block; right: 3%;}
+}
+
+ul.sidebar-nav li{
+	display: block;
+	position: relative;
+	white-space: nowrap;
+	right: 0;
+	width: 89%;
+	margin-bottom: 1px;
+}
+
+ul.sidebar-nav li button {
+	width: 100%;
+	height: 7.3vh;
+	background-color: #7096FF;
+}
+
+ul.sidebar-nav li button:active {
+	background-color: #5C87FF;
+}
+
+.hamburger-nav {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	background-color: black;
+	width: 90px;
+	height: 90px;
+}
+
+.hamburger-nav span {
+	position: relative;
+	margin: 0 auto;
+	top:35%;
+	background-color: white;
+	display: block;
+	width: 80%;
+	height: 10px;
+}
+
+.hamburger-nav::before {
+	content: '';
+	position: relative;
+	margin: 0 auto;
+	top:20%;
+	background-color: white;
+	display: block;
+	width: 80%;
+	height: 10px;
+}
+
+.hamburger-nav::after {
+	content: '';
+	position: relative;
+	margin: 0 auto;
+	top:50%;
+	background-color: white;
+	display: block;
+	width: 80%;
+	height: 10px;
+}
+
+

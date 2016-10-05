@@ -17,6 +17,8 @@ var current_id =0;
 var starting_word = 0;
 var last_word = words_count;
 
+var menu_trigger = false;
+
 var later_answer;
 var data_pairs = {
 	"cword": [current_word, 'characters'],
@@ -111,9 +113,34 @@ var range_btns = document.querySelectorAll('aside li');
 //let is not supported in all browsers, provide polyfill
 for (let i = 0; i<range_btns.length; i++) {
 	console.log("opis elementu: ", i);
-	range_btns[i].addEventListener('click', function (){
+	range_btns[i].addEventListener('click', function range_contract (){
 		console.log("kliknięto range: ", i*100, i*100+99);
 		starting_word = i*100;
 		last_word = i*100+99;
+		draw_element(null,'char');
+		menu_trigger = false;
+		sbr_nav.className += " sideMenuOut";
+		sbr_nav.classList.remove("sideMenuIn");
 	}, false);
+}
+
+
+//ux - modyfikacjie wyglądu
+var hamburger_icon = document.querySelector('#hamburger-side');
+var sbr_nav = document.querySelector('.sidebar-nav');
+hamburger_icon.addEventListener('click', animateSidebar, false);
+
+function animateSidebar () {
+
+		if(menu_trigger === false){
+			sbr_nav.className += " sideMenuIn";
+			sbr_nav.classList.remove("sideMenuOut")
+			menu_trigger = true;
+			console.log("klasy: " + sbr_nav.classList);
+		} else {
+			menu_trigger = false;
+			sbr_nav.className += " sideMenuOut";
+			sbr_nav.classList.remove("sideMenuIn")
+
+		}
 }

@@ -3,3 +3,5 @@
 *.jpg
 /plugins
 /files
+/data/hsk20160901.json
+/data/hsk20160913.json
