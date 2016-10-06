@@ -60,8 +60,10 @@ var fill_output = function (fill_type) {
 }
 
 var draw_element = function (btn_hit) {
-	console.log("zasięg: " + starting_word, last_word);
-	var rand_last = Math.random() * 99;
+	console.log("draw zasięg: " + starting_word, last_word);
+	last_word = last_word === words_count ? last_word : 99;
+	var rand_last = Math.random() * last_word;
+	console.log("wylosowany: " + starting_word);
 	current_id = btn_hit !== 0 ? Math.floor( starting_word + rand_last) : 0;
 	fill_output(btn_hit);
 	console.log("crnt: " + rand_last, current_id);
@@ -134,13 +136,15 @@ function animateSidebar () {
 
 		if(menu_trigger === false){
 			sbr_nav.className += " sideMenuIn";
-			sbr_nav.classList.remove("sideMenuOut")
+			// sbr_nav.classList.remove("sideMenuOut")
 			menu_trigger = true;
-			console.log("klasy: " + sbr_nav.classList);
+			// console.log("klasy: " + sbr_nav.classList);
 		} else {
 			menu_trigger = false;
-			sbr_nav.className += " sideMenuOut";
+			// sbr_nav.className += " sideMenuOut";
 			sbr_nav.classList.remove("sideMenuIn")
-
+			starting_word = 0;
+			last_word = words_count;
+			console.log("zasięg: " + starting_word, last_word);
 		}
 }
