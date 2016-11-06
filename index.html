@@ -3,6 +3,7 @@
 	<head>
 		<meta charset = "utf-8">
 		<title>Babaozi learn chinese</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="assets/css/main.css">
 		<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 		<script src ="data/hsk20161005.json"></script>
@@ -11,29 +12,32 @@
 	</head>
 
 	<body>
-
+	<div class="wrapper">
 	<header>
-		<h2>baBaozi</h2>
+		<h2 class="top-title">baBaozi</h2>
 		<p>little chinese learning app</p>
 	</header>
 
 	<div class="container">
-		<div class="row">
-		<button class="prev_btn">prev</button>
-		<button class="first_btn">first</button>
-		<button class="next_btn">next</button></div>
-		<div class="row">
-			<main>
+		<div class="row top-menu">
+			<button class="prev_btn">prev</button>
+			<button class="first_btn">first</button>
+			<button class="next_btn">next</button>
+		</div>
+	
+		<main>
 			<div id="chinese_char" class="word-item"></div>
 			<div id="pronunciation" class="word-item"></div>
 			<div id="translations" class="word-item"></div>
 			<div id="word-item_id" class="word-item_id"></div>
-			</main>
+		</main>
+		<div class="side-buttons">
 			<button class="char_btn draw_btn_group">char</button>
 			<button class="pron_btn draw_btn_group">pron</button>
-			<button class="transl_btn draw_btn_group">translation</button>
-			<button class="answer_btn">show answer</button>
+			<button class="transl_btn draw_btn_group">transl<wbr>ation</button>
 		</div>
+		<button class="answer_btn">show answer</button>
+
 	</div>
 
 	<aside>
@@ -53,7 +57,7 @@
 			<li><button class="range_selector">1100-1199</button></li>
 		</ul>
 	</aside>
-
+	</div>
 		<script src ="assets/js/main.js"></script>
 
 	</body>

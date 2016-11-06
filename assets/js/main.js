@@ -1,6 +1,14 @@
+(function(){
+const bb_interface = {
+	containers: {word: document.querySelector('#chinese_char')},
+	buttons: {}
+};
+console.log("cnt: " + bb_interface.containers.a);
+
+let buttons = document.querySelectorAll('.container > button');
 
 
-var current_word = document.querySelector('#chinese_char');
+// var current_word = document.querySelector('#chinese_char');
 var current_pron = document.querySelector('#pronunciation');
 var current_transl = document.querySelector('#translations');
 var current_itemid = document.querySelector('.word-item_id');
@@ -21,7 +29,7 @@ var menu_trigger = false;
 
 var later_answer;
 var data_pairs = {
-	"cword": [current_word, 'characters'],
+	"cword": [bb_interface.containers.word, 'characters'],
 	"cpron": [current_pron, 'pron'],
 	"ctransl": [current_transl, 'translation']
 };
@@ -32,24 +40,24 @@ var fill_output = function (fill_type) {
 	clearTimeout(later_answer);
 
 	if(fill_type === 'char'){
-		current_word.innerHTML = data.glossary.items[current_id].characters;
+		bb_interface.containers.word.innerHTML = data.glossary.items[current_id].characters;
 		current_pron.innerHTML = '';
 		current_transl.innerHTML = '<hr class="progress">';
 		postpone_answer();
 		
 	} else if (fill_type === 'transl') {
-		current_word.innerHTML = '';
+		bb_interface.containers.word.innerHTML = '';
 		current_pron.innerHTML = '<hr class="progress">';
 		current_transl.innerHTML = data.glossary.items[current_id].translation;
 		postpone_answer();
 		
 	} else if (fill_type === 0) {
-		current_word.innerHTML = data.glossary.items[0].characters;
+		bb_interface.containers.word.innerHTML = data.glossary.items[0].characters;
 		current_pron.innerHTML = data.glossary.items[current_id].pron;
 		current_transl.innerHTML = '<hr class="progress">';
 		postpone_answer();
 	} else {
-		current_word.innerHTML = '';
+		bb_interface.containers.word.innerHTML = '';
 		current_pron.innerHTML = data.glossary.items[current_id].pron;
 		current_transl.innerHTML = '<hr class="progress">';
 		postpone_answer();
@@ -63,10 +71,10 @@ var draw_element = function (btn_hit) {
 	console.log("draw zasięg: " + starting_word, last_word);
 	last_word = last_word === words_count ? last_word : 99;
 	var rand_last = Math.random() * last_word;
-	console.log("wylosowany: " + starting_word);
+	// console.log("wylosowany: " + starting_word);
 	current_id = btn_hit !== 0 ? Math.floor( starting_word + rand_last) : 0;
 	fill_output(btn_hit);
-	console.log("crnt: " + rand_last, current_id);
+	// console.log("crnt: " + rand_last, current_id);
 };
 
 var postpone_answer = function () {
@@ -78,7 +86,7 @@ var postpone_answer = function () {
 
 
 var show_answer = function () {
-	current_word.innerHTML = data.glossary.items[current_id].characters;
+	bb_interface.containers.word.innerHTML = data.glossary.items[current_id].characters;
 	current_pron.innerHTML = data.glossary.items[current_id].pron;
 	current_transl.innerHTML = data.glossary.items[current_id].translation;
 	current_itemid.innerHTML = data.glossary.items[current_id].item_id;
@@ -114,9 +122,9 @@ var range_btns = document.querySelectorAll('aside li');
 // todo
 //let is not supported in all browsers, provide polyfill
 for (let i = 0; i<range_btns.length; i++) {
-	console.log("opis elementu: ", i);
+	// console.log("opis elementu: ", i);
 	range_btns[i].addEventListener('click', function range_contract (){
-		console.log("kliknięto range: ", i*100, i*100+99);
+		// console.log("kliknięto range: ", i*100, i*100+99);
 		starting_word = i*100;
 		last_word = i*100+99;
 		draw_element(null,'char');
@@ -145,6 +153,8 @@ function animateSidebar () {
 			sbr_nav.classList.remove("sideMenuIn")
 			starting_word = 0;
 			last_word = words_count;
-			console.log("zasięg: " + starting_word, last_word);
+			// console.log("zasięg: " + starting_word, last_word);
 		}
 }
+})();
+

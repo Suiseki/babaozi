@@ -1,7 +1,8 @@
 *.psd
 *.png
 *.jpg
-/plugins
-/files
-/data/hsk20160901.json
-/data/hsk20160913.json
+plugins/
+files/
+data/hsk20160901.json
+data/hsk20160913.json
+assets/js/temp.js
