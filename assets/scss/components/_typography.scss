@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: 'Open Sans', Verdana, Arial, sans-serif;
+	font-size: 1em;
+
+}
+
+p {
+	font-size: 1.0rem;
+}
+
+h2 {
+	font-size: 1.1rem;
+	line-height: 1.1;
+
+	&.top-title {
+		margin-top: 2px;
+		margin-bottom: 3px;
+		@media screen and (min-width:$iph4-h) and (orientation: landscape) {
+			max-width: 25%;
+			float: left;
+			margin-right: 25px;
+		}
+	}
+}
+
+header p {
+	@media screen and (min-width:$iph4-h) and (orientation: landscape) {
+		float: left;
+	}
+}
+
+

@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+	font-size: 16px;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background-color: gray;
+}
+
+
+.wrapper{
+	position: absolute;
+	top:0;
+	margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+	background-color: black;
+}
+
+header {
+	position: relative;
+	top:0;
+	left: 0;
+	height: $header-h;
+	width: 100vw;
+	min-height: 55px;
+	font-size: 1em;
+	padding: 8px 45px;
+	color: white;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+	background-color: $header-color;
+	z-index: 1;
+}
+
+
+.container {
+	position: absolute;
+	top: $header-h;
+	width: 100%;
+	background-color: $container-color;
+	min-height: 400px;
+	height: $container-h;
+}
+
+main {
+	width: $main-w;
+	height: $main-h;
+	overflow: hidden;
+	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
+		main {width: $main-w-phone;}
+	}
+}
+
+
+.word-item:first-child {
+	font-size: 11.8vh;
+	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
+		border-bottom: 2px black dotted;
+		font-size: 3.2rem;
+	}
+
+}
+.word-item {
+	width: 80%;
+	margin: 20px;
+	clear: left;
+	font-size: 1.04rem;
+	@media screen and (max-width: $iph4-w) and (orientation: portrait) {
+		font-size: 0.9rem;
+	}
+}
+
+
+.word-item_id {
+	position: absolute;
+	right: 32%;
+	bottom: 18%;
+	font-size: 0.8rem;
+	color: #9c9c9c;
+	z-index: 5;
+}
+
+
+.progress {
+	background-color: $gray-dark;
+	float: left;
+	position: relative;
+	left: 0;
+	width: 0;
+	height: 3px;
+	animation: showprogress 6s linear forwards;
+	clear: both;
+	border:none;
+}
+
+@keyframes showprogress {
+	0% {width: 0;}
+	100% {width: 100%;}
+}
+
+

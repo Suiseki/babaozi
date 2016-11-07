@@ -1,0 +1,57 @@
+//colors
+
+
+// Grays
+// -------------------------
+
+$gray-darker:            #222; //13.5% black
+$gray-dark:              #404040; //75% black
+$gray:                   #808080; //50% black
+$gray-light:             #999;	//40% black
+$gray-lighter:           #e5e5e5; //25% black
+$gray-lightest:          #f4f4f4; //9.5% black
+
+$colors: (
+  'header-color': #8dabff, //lightBlue
+  'topBtns': #dd8dff, //lightViolet
+  'sideCharacter': #ffab8d, //brownLightest
+  'sidePron': #cc8971, //brownMed
+  'sideTransl': #a9705c, //brownDark
+  'sidebarNav': #7c8bb5
+);
+
+$container-color: $gray-lighter;
+
+$header-color: map-get($colors, header-color);
+$topBtns: map-get($colors, topBtns);
+$sideCharacter: map-get($colors, sideCharacter);
+$sidePron: map-get($colors, sidePron);
+$sideTransl: map-get($colors, sideTransl);
+$sidebarNav: map-get($colors, sidebarNav);
+
+
+// page proportions
+
+$header-h: 11%;
+$container-h: 100% - $header-h;
+	$top-menu-h: 15%;
+	$bottom-h: 15%;
+	$main-h: 100% - $top-menu-h - $bottom-h;
+
+	$main-w: 75%;
+	$side-buttons-w: 100% - $main-w;
+	$main-w-phone: 82%;
+	$side-buttons-w-phone: 100% - $main-w-phone;
+	$aside-menu-w: 60vw;
+
+
+// Media Queries size
+
+
+$iph4-w: 320px;
+$sgal-w: 360px;
+$iph4-h: 480px;
+$scr-xs:480px;
+$iph5-h: 568px;
+$ipd-w: 768px;
+

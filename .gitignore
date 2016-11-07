@@ -1,6 +1,7 @@
 *.psd
 *.png
 *.jpg
+*.map
 plugins/
 files/
 data/hsk20160901.json
