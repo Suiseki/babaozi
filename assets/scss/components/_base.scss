@@ -52,7 +52,7 @@ header {
 	top: $header-h;
 	width: 100%;
 	background-color: $container-color;
-	min-height: 400px;
+	min-height: 280px;
 	height: $container-h;
 }
 
@@ -68,6 +68,7 @@ main {
 
 .word-item:first-child {
 	font-size: 11.8vh;
+	min-height: 10vh;
 	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
 		border-bottom: 2px black dotted;
 		font-size: 3.2rem;
@@ -79,8 +80,11 @@ main {
 	margin: 20px;
 	clear: left;
 	font-size: 1.04rem;
+	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
+		font-size: 0.85rem;
+	}
 	@media screen and (max-width: $iph4-w) and (orientation: portrait) {
-		font-size: 0.9rem;
+		font-size: 0.75rem;
 	}
 }
 

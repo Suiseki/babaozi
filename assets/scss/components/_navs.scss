@@ -1,8 +1,9 @@
 /*navigation*/
 button {
-	padding: 24px 5px;
+	padding: 8px 5px;
 	border: none;
 	font-size: 1.1em;
+	color: $gray-lightest;
 	@media screen and (max-width:$iph4-w) and (orientation: portrait) {
 		font-size: 0.75rem;
 	}
@@ -35,7 +36,7 @@ button {
 }
 
 .prev_btn, .first_btn {
-	border-right: 1px solid #9f71b3;
+	border-right: 1px solid $topBtnsBorder;
 }
 
 .side-buttons {

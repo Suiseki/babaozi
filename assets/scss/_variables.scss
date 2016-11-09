@@ -11,7 +11,7 @@ $gray-light:             #999;	//40% black
 $gray-lighter:           #e5e5e5; //25% black
 $gray-lightest:          #f4f4f4; //9.5% black
 
-$colors: (
+$colors1: (
   'header-color': #8dabff, //lightBlue
   'topBtns': #dd8dff, //lightViolet
   'sideCharacter': #ffab8d, //brownLightest
@@ -20,10 +20,22 @@ $colors: (
   'sidebarNav': #7c8bb5
 );
 
+$colors2: (
+  'header-color': #4256B0,
+  'topBtns': #0E227C,
+  'sideCharacter': #628585,
+  'sidePron': #537C7C,
+  'sideTransl': #325B5B,
+  'sidebarNav': #5d5c5f
+);
+
+$colors: $colors1;
+
 $container-color: $gray-lighter;
 
 $header-color: map-get($colors, header-color);
 $topBtns: map-get($colors, topBtns);
+$topBtnsBorder: lighten(map-get($colors, topBtns), 9%);
 $sideCharacter: map-get($colors, sideCharacter);
 $sidePron: map-get($colors, sidePron);
 $sideTransl: map-get($colors, sideTransl);
