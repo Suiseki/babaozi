@@ -37,7 +37,7 @@ header {
 	left: 0;
 	height: $header-h;
 	width: 100vw;
-	min-height: 55px;
+	min-height: $min-header-h;
 	font-size: 1em;
 	padding: 8px 45px;
 	color: white;
@@ -54,9 +54,15 @@ header {
 	background-color: $container-color;
 	min-height: 280px;
 	height: $container-h;
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		top: $min-header-h;
+		min-height: 190px;
+		height: calc(100% - #{$min-header-h});
+	}
 }
 
 main {
+	position: relative;
 	width: $main-w;
 	height: $main-h;
 	overflow: hidden;
@@ -73,6 +79,9 @@ main {
 		border-bottom: 2px black dotted;
 		font-size: 3.2rem;
 	}
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		font-size: 1.2rem;
+	}
 
 }
 .word-item {
@@ -86,13 +95,17 @@ main {
 	@media screen and (max-width: $iph4-w) and (orientation: portrait) {
 		font-size: 0.75rem;
 	}
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		font-size: 0.75rem;
+		margin: 5px 5px 0 20px;
+	}
 }
 
 
 .word-item_id {
 	position: absolute;
-	right: 32%;
-	bottom: 18%;
+	right: 9%;
+	bottom: 4%;
 	font-size: 0.8rem;
 	color: #9c9c9c;
 	z-index: 5;
@@ -116,4 +129,8 @@ main {
 	100% {width: 100%;}
 }
 
-
+.search {
+	position: absolute;
+    bottom: 1vh;
+    left: 5px;
+}

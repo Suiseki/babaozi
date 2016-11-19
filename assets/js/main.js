@@ -1,4 +1,4 @@
-(function(){
+var learn_chinese = (function(){
 const bb_interface = {
 	containers: {word: document.querySelector('#chinese_char')},
 	buttons: {}
@@ -19,6 +19,11 @@ var char = document.querySelector('.char_btn');
 var draw_pron = document.querySelector('.pron_btn');
 var draw_transl = document.querySelector('.transl_btn');
 var answer = document.querySelector('.answer_btn');
+
+var search_form = document.querySelector('#search');
+var word_to_search = document.querySelector('input[name=word_request]');
+var search_button = document.querySelector('input[type=button]');
+
 var words_count = Object.keys(data.glossary.items).length;
 var current_id =0;
 //manage word range selector
@@ -75,6 +80,7 @@ var draw_element = function (btn_hit) {
 	current_id = btn_hit !== 0 ? Math.floor( starting_word + rand_last) : 0;
 	fill_output(btn_hit);
 	// console.log("crnt: " + rand_last, current_id);
+	return "testresult";
 };
 
 var postpone_answer = function () {
@@ -86,10 +92,12 @@ var postpone_answer = function () {
 
 
 var show_answer = function () {
+	console.log("showans: ", current_id, data.glossary.items[current_id]);
 	bb_interface.containers.word.innerHTML = data.glossary.items[current_id].characters;
 	current_pron.innerHTML = data.glossary.items[current_id].pron;
 	current_transl.innerHTML = data.glossary.items[current_id].translation;
-	current_itemid.innerHTML = data.glossary.items[current_id].item_id;
+	// current_itemid.innerHTML = data.glossary.items[current_id].item_id;
+	word_to_search.value = data.glossary.items[current_id].item_id;
 	// console.log("word: " + data.glossary.items[current_id].item_id, current_itemid);
 	clearTimeout(later_answer);
 
@@ -116,6 +124,23 @@ answer.addEventListener('click', show_answer, false);
 prev_btn.addEventListener('click', make_step.bind(null,-1), false);
 first_btn.addEventListener('click', draw_element.bind(null,0), false);
 next_btn.addEventListener('click', make_step.bind(null,1), false);
+
+word_to_search.addEventListener('keyup', function (e){
+	if (e.which === 13 || e.keyCode === 13) {
+		e.preventDefault();
+		processQuery();
+		console.log("this: " + this);
+		this.blur();
+	} else {
+		console.log("key: " + e.keyCode);
+	}
+});
+
+search_form.addEventListener('submit', function (e) {
+	e.preventDefault();
+});
+
+search_button.addEventListener('click', processQuery);
 
 // range select
 var range_btns = document.querySelectorAll('aside li');
@@ -156,5 +181,21 @@ function animateSidebar () {
 			// console.log("zasięg: " + starting_word, last_word);
 		}
 }
+
+function processQuery () {
+	console.log("typ zapytania: " + typeof word_to_search.value, isNaN(word_to_search.value));
+
+	if (isNaN(word_to_search.value)) {
+		console.log("query nie jest liczbą: ");
+	} else {
+		//items is an array, subtract 1 to get first element
+		current_id = Number(word_to_search.value)-1;
+		show_answer();
+		console.log("pobrany: ", data.glossary.items[current_id].pron);
+		
+	}
+
+}
+
 })();
 

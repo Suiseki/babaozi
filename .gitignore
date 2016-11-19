@@ -4,6 +4,7 @@
 *.map
 plugins/
 files/
+tests/
 data/hsk20160901.json
 data/hsk20160913.json
 assets/js/temp.js

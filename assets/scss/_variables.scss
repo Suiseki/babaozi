@@ -45,6 +45,7 @@ $sidebarNav: map-get($colors, sidebarNav);
 // page proportions
 
 $header-h: 11%;
+$min-header-h: 55px;
 $container-h: 100% - $header-h;
 	$top-menu-h: 15%;
 	$bottom-h: 15%;
