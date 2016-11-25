@@ -1,11 +1,11 @@
 var learn_chinese = (function(){
-const bb_interface = {
+var bb_interface = {
 	containers: {word: document.querySelector('#chinese_char')},
 	buttons: {}
 };
 console.log("cnt: " + bb_interface.containers.a);
 
-let buttons = document.querySelectorAll('.container > button');
+var buttons = document.querySelectorAll('.container > button');
 
 
 // var current_word = document.querySelector('#chinese_char');
@@ -92,11 +92,10 @@ var postpone_answer = function () {
 
 
 var show_answer = function () {
-	console.log("showans: ", current_id, data.glossary.items[current_id]);
 	bb_interface.containers.word.innerHTML = data.glossary.items[current_id].characters;
 	current_pron.innerHTML = data.glossary.items[current_id].pron;
 	current_transl.innerHTML = data.glossary.items[current_id].translation;
-	// current_itemid.innerHTML = data.glossary.items[current_id].item_id;
+	current_itemid.innerHTML = data.glossary.items[current_id].item_id;
 	word_to_search.value = data.glossary.items[current_id].item_id;
 	// console.log("word: " + data.glossary.items[current_id].item_id, current_itemid);
 	clearTimeout(later_answer);
@@ -142,8 +141,8 @@ search_button.addEventListener('click', processQuery);
 // range select
 var range_btns = document.querySelectorAll('aside li');
 // todo
-//let is not supported in all browsers, provide polyfill
-for (let i = 0; i<range_btns.length; i++) {
+//var is not supported in all browsers, provide polyfill
+for (var i = 0; i<range_btns.length; i++) {
 	// console.log("opis elementu: ", i);
 	range_btns[i].addEventListener('click', function range_contract (){
 		// console.log("kliknięto range: ", i*100, i*100+99);
@@ -189,9 +188,9 @@ function processQuery () {
 			for (var i=0; i<data.glossary.items.length; i++) {
 				if (data.glossary.items[i].characters === search_val) {
 					current_id = i;
-					
-						console.log("wykryto chińskie znaki", i);
+
 					show_answer();
+					word_to_search.value = '';
 				}
 			}
 		}
@@ -199,7 +198,7 @@ function processQuery () {
 		//items is an array, subtract 1 to get first element
 		current_id = Number(search_val)-1;
 		show_answer();
-		console.log("pobrany: ", data.glossary.items[current_id].pron);
+		// console.log("pobrany: ", data.glossary.items[current_id].pron);
 		
 	}
 
