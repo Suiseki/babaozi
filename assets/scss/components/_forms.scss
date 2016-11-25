@@ -1,8 +1,22 @@
+label{
+	font-size: 0.75rem;
+	margin-bottom: 5px;
+	display: block;
+	margin-left: 20px;
+	color: $gray;
+}
+
 input {
 	font-size: 1rem;
-	padding: 3px 8px;
-	max-width:30vw;
+	padding: 8px 8px;
+	max-width:37vw;
 	border: none;
+	border-bottom: 1px solid $gray-light;
+	border-radius: 2px;
+	&[name=word_request] {
+		margin-left: 20px;
+	}
+
 	&[type=button] {
 		background-color: $gray-lightest;
 	}

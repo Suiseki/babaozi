@@ -15,7 +15,7 @@ button {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	height: 15%;
+	height: $top-menu-h;
 }
 
 .prev_btn, .first_btn , .next_btn {
@@ -45,9 +45,9 @@ button {
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    height: 70%;
+    height: $main-h;
     width: 25%;
-    top: 15%;
+    top: $top-menu-h;
     right: 0;
 	@media screen and (max-width:$sgal-w) and (orientation: portrait) {
 		width: 28%;
@@ -109,7 +109,7 @@ button.answer_btn:active {
 /**/   /**/
 
 aside {
-	position: fixed;
+	position: absolute;
 	top: 5px;
 	right: 0;
 	width: $aside-menu-w;
