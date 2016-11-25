@@ -129,10 +129,7 @@ word_to_search.addEventListener('keyup', function (e){
 	if (e.which === 13 || e.keyCode === 13) {
 		e.preventDefault();
 		processQuery();
-		console.log("this: " + this);
 		this.blur();
-	} else {
-		console.log("key: " + e.keyCode);
 	}
 });
 
@@ -183,13 +180,24 @@ function animateSidebar () {
 }
 
 function processQuery () {
-	console.log("typ zapytania: " + typeof word_to_search.value, isNaN(word_to_search.value));
+	// console.log("typ zapytania: " + typeof word_to_search.value, isNaN(word_to_search.value));
+	var search_val = word_to_search.value;
+	if (isNaN(search_val)) {
 
-	if (isNaN(word_to_search.value)) {
-		console.log("query nie jest liczbą: ");
+		if (search_val.match(/[\u3400-\u9FBF]/)) {
+
+			for (var i=0; i<data.glossary.items.length; i++) {
+				if (data.glossary.items[i].characters === search_val) {
+					current_id = i;
+					
+						console.log("wykryto chińskie znaki", i);
+					show_answer();
+				}
+			}
+		}
 	} else {
 		//items is an array, subtract 1 to get first element
-		current_id = Number(word_to_search.value)-1;
+		current_id = Number(search_val)-1;
 		show_answer();
 		console.log("pobrany: ", data.glossary.items[current_id].pron);
 		
