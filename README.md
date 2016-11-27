@@ -16,6 +16,7 @@ Various development approaches will be left for comparison purposes.
 
 ### Impemented patterns
 - Object Literal
+
 ### Planned patterns
 - Module Pattern
 - Revealing Module Pattern
