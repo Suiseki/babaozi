@@ -1,7 +1,10 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: inherit;
+	line-height: inherit;
+	color: inherit;
 }
 
 html {
@@ -19,6 +22,7 @@ html, body {
 	height: 100%;
 	margin: 0;
 	background-color: $gray-dark;
+	color: white;
 }
 
 
@@ -43,7 +47,6 @@ header {
 	min-height: $min-header-h;
 	font-size: 1em;
 	padding: 8px 45px;
-	color: white;
 	box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
 	background-color: $header-color;
 	z-index: 1;
@@ -69,6 +72,7 @@ main {
 	width: $main-w;
 	height: $main-h;
 	overflow: hidden;
+	color: black;
 	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
 		main {width: $main-w-phone;}
 	}

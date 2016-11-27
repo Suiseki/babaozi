@@ -1,14 +1,12 @@
 var learn_chinese = (function(){
 var bb_interface = {
 	containers: {word: document.querySelector('#chinese_char')},
-	buttons: {}
 };
-console.log("cnt: " + bb_interface.containers.a);
 
 var buttons = document.querySelectorAll('.container > button');
 
 
-// var current_word = document.querySelector('#chinese_char');
+var current_word = document.querySelector('#chinese_char');
 var current_pron = document.querySelector('#pronunciation');
 var current_transl = document.querySelector('#translations');
 var current_itemid = document.querySelector('.word-item_id');
@@ -34,7 +32,7 @@ var menu_trigger = false;
 
 var later_answer;
 var data_pairs = {
-	"cword": [bb_interface.containers.word, 'characters'],
+	"cword": [current_word, 'characters'],
 	"cpron": [current_pron, 'pron'],
 	"ctransl": [current_transl, 'translation']
 };
@@ -45,24 +43,24 @@ var fill_output = function (fill_type) {
 	clearTimeout(later_answer);
 
 	if(fill_type === 'char'){
-		bb_interface.containers.word.innerHTML = data.glossary.items[current_id].characters;
+		current_word.innerHTML = data.glossary.items[current_id].characters;
 		current_pron.innerHTML = '';
 		current_transl.innerHTML = '<hr class="progress">';
 		postpone_answer();
 		
 	} else if (fill_type === 'transl') {
-		bb_interface.containers.word.innerHTML = '';
+		current_word.innerHTML = '';
 		current_pron.innerHTML = '<hr class="progress">';
 		current_transl.innerHTML = data.glossary.items[current_id].translation;
 		postpone_answer();
 		
 	} else if (fill_type === 0) {
-		bb_interface.containers.word.innerHTML = data.glossary.items[0].characters;
+		current_word.innerHTML = data.glossary.items[0].characters;
 		current_pron.innerHTML = data.glossary.items[current_id].pron;
 		current_transl.innerHTML = '<hr class="progress">';
 		postpone_answer();
 	} else {
-		bb_interface.containers.word.innerHTML = '';
+		current_word.innerHTML = '';
 		current_pron.innerHTML = data.glossary.items[current_id].pron;
 		current_transl.innerHTML = '<hr class="progress">';
 		postpone_answer();
@@ -92,11 +90,10 @@ var postpone_answer = function () {
 
 
 var show_answer = function () {
-	bb_interface.containers.word.innerHTML = data.glossary.items[current_id].characters;
+	current_word.innerHTML = data.glossary.items[current_id].characters;
 	current_pron.innerHTML = data.glossary.items[current_id].pron;
 	current_transl.innerHTML = data.glossary.items[current_id].translation;
 	current_itemid.innerHTML = data.glossary.items[current_id].item_id;
-	word_to_search.value = data.glossary.items[current_id].item_id;
 	// console.log("word: " + data.glossary.items[current_id].item_id, current_itemid);
 	clearTimeout(later_answer);
 
@@ -144,15 +141,17 @@ var range_btns = document.querySelectorAll('aside li');
 //var is not supported in all browsers, provide polyfill
 for (var i = 0; i<range_btns.length; i++) {
 	// console.log("opis elementu: ", i);
-	range_btns[i].addEventListener('click', function range_contract (){
-		// console.log("kliknięto range: ", i*100, i*100+99);
-		starting_word = i*100;
-		last_word = i*100+99;
-		draw_element(null,'char');
-		menu_trigger = false;
-		sbr_nav.className += " sideMenuOut";
-		sbr_nav.classList.remove("sideMenuIn");
-	}, false);
+	(function iteration_var_fix(obj_side, j){
+		range_btns[j].addEventListener('click', function range_contract (){
+			// console.log("kliknięto range: ", j*100, j*100+99);
+			starting_word = j*100;
+			last_word = j*100+99;
+			draw_element(null,'char');
+			menu_trigger = false;
+			sbr_nav.className += " sideMenuOut";
+			sbr_nav.classList.remove("sideMenuIn");
+		}, false);
+	})(this, i);
 }
 
 
@@ -165,21 +164,16 @@ function animateSidebar () {
 
 		if(menu_trigger === false){
 			sbr_nav.className += " sideMenuIn";
-			// sbr_nav.classList.remove("sideMenuOut")
 			menu_trigger = true;
-			// console.log("klasy: " + sbr_nav.classList);
 		} else {
 			menu_trigger = false;
-			// sbr_nav.className += " sideMenuOut";
 			sbr_nav.classList.remove("sideMenuIn")
 			starting_word = 0;
 			last_word = words_count;
-			// console.log("zasięg: " + starting_word, last_word);
 		}
 }
 
 function processQuery () {
-	// console.log("typ zapytania: " + typeof word_to_search.value, isNaN(word_to_search.value));
 	var search_val = word_to_search.value;
 	if (isNaN(search_val)) {
 
@@ -198,7 +192,6 @@ function processQuery () {
 		//items is an array, subtract 1 to get first element
 		current_id = Number(search_val)-1;
 		show_answer();
-		// console.log("pobrany: ", data.glossary.items[current_id].pron);
 		
 	}
 
