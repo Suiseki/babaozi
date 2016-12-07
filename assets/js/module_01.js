@@ -24,6 +24,8 @@
 
 		},
 		cacheDom: function () {
+			this.body = document.querySelector('body');
+
 			// navigation button
 			this.prev_btn = document.querySelector('.prev_btn');
 			this.first_btn = document.querySelector('.first_btn ');
@@ -46,6 +48,8 @@
 			this.search_form = document.querySelector('#search');
 			this.word_to_search = document.querySelector('input[name=word_request]');
 			this.search_button = document.querySelector('input[type=button]');
+			this.modal = document.querySelector('.modal-wrapper');
+			this.srch_res = document.querySelector(".search-results");
 			
 			//side menu
 			this.hamburger_icon = document.querySelector('#hamburger-side');
@@ -61,6 +65,8 @@
 			this.prev_btn.addEventListener('click', this.make_step.bind(this,-1), false);
 			this.first_btn.addEventListener('click', this.draw_element.bind(this,0), false);
 			this.next_btn.addEventListener('click', this.make_step.bind(this,1), false);
+			this.modal.addEventListener('click', this.closeModal.bind(this), false);
+
 
 			this.word_to_search.addEventListener('keyup', function (e){
 				if (e.which === 13 || e.keyCode === 13) {
@@ -74,13 +80,14 @@
 				e.preventDefault();
 			});
 
-			this.search_button.addEventListener('click', this.processQuery.bind(this));
+			this.search_button.addEventListener('click', this.processQuery.bind(this, null));
 			this.hamburger_icon.addEventListener('click', this.animateSidebar.bind(this), false);
 			
 			//in ES6 ver change var to let - this make closure
+			//todo zmniejszyć ilość eventów
 			for (var i = 0; i < this.range_btns.length; i++) {
 				(function iteration_var_fix(obj_side, j){
-
+							console.log("doddany ev: ");
 							obj_side.range_btns[j].addEventListener('click', function range_contract (){
 								// console.log("kliknięto range: ", i*100, i*100+99);
 								obj_side.starting_word = j*100;
@@ -117,7 +124,6 @@
 				this.current_transl.innerHTML = '<hr class="progress">';
 				this.postpone_answer();
 			}
-
 		},		
 		make_step: function (step) {
 			this.current_id += (this.current_id < this.words_count) ? step : 0;
@@ -166,21 +172,58 @@
 					this.last_word = this.words_count;
 				}
 		},
-		processQuery: function () {
-			var search_val = this.word_to_search.value;
+		processQuery: function (s_value) {
+			console.log("s_value: " + s_value, typeof s_value);
+			var search_val =  s_value || this.word_to_search.value;
 			if (isNaN(search_val)) {
 
 				if (search_val.match(/[\u3400-\u9FBF]/)) {
+					var results_array = [];
+					
 					// found among chinese character range of unicode 
 					for (var i=0; i < data.glossary.items.length; i++) {
-						// if (data.glossary.items[i].characters === search_val) {
 						if (data.glossary.items[i].characters.indexOf(search_val) !== -1) {
-							//find first occurance in dictionary
-							this.current_id = i;
-							this.show_answer();
-							this.word_to_search.value = '';
+
+							//we search whole characters base
+							results_array.push(i);
 						}
 					}
+
+					//TODO / use map, foreach or reduce
+					console.log("wyszukano elementów: " + results_array.length);
+					this.body.classList.add("modalized");
+
+					//srch_res.innerHTML = results_array.join(', ');
+					// var result_characters = results_array.map(function(el){
+					// 	//console.log("el: " + data.glossary.items[el].characters);
+					// 	return data.glossary.items[el].characters;
+					// })
+					// srch_res.innerHTML = result_characters.join(', ');
+
+					var result_characters = results_array.forEach(function(el){
+						this.srch_res.innerHTML += '<div id="'+el+'"">' +
+						 data.glossary.items[el].characters +
+						  '</div>';
+
+						//console.log("el: " + data.glossary.items[el].characters);
+						// return data.glossary.items[el].characters;
+					}.bind(this));
+
+
+					this.srch_res.addEventListener('click', this.analyseFound.bind(this), false);
+					// var found_words = document.querySelectorAll('.search-results div');
+					// console.log("znalezione : " + found_words.length);
+					// srch_res.innerHTML = result_characters.join(', ');
+
+					// var result_characters = results_array.reduce(function (cum, el, indx) {
+					// 	console.log("cum: " + cum);
+					// 	return cum + '<div id="sl_'+indx+'">' + data.glossary.items[el].characters + '</div>';
+					// });
+
+					// srch_res.innerHTML = result_characters;
+
+
+
 				}
 			} else {
 				//items is an array, subtract 1 to get first element
@@ -190,6 +233,19 @@
 				
 			}
 
+		},
+		closeModal: function () {
+			console.log("close modal ");
+			while(this.srch_res.firstChild){
+				this.srch_res.removeChild(this.srch_res.firstChild);
+			}
+			this.body.classList.remove("modalized");
+		},
+		analyseFound: function (e) {
+			//if clicked element is not the same as element with event attached
+			if (e.target !== e.currentTarget) {
+				this.processQuery(Number(e.target.id)+1);
+			}
 		}
 
 	}
