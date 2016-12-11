@@ -78,37 +78,6 @@ main {
 	}
 }
 
-
-.word-item:first-child {
-	font-size: 11.8vh;
-	min-height: 10vh;
-	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
-		border-bottom: 2px black dotted;
-		font-size: 3.2rem;
-	}
-	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
-		font-size: 1.2rem;
-	}
-
-}
-.word-item {
-	width: 80%;
-	margin: 20px;
-	clear: left;
-	font-size: 1.04rem;
-	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
-		font-size: 0.85rem;
-	}
-	@media screen and (max-width: $iph4-w) and (orientation: portrait) {
-		font-size: 0.75rem;
-	}
-	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
-		font-size: 0.75rem;
-		margin: 5px 5px 0 20px;
-	}
-}
-
-
 .word-item_id {
 	position: absolute;
 	right: 9%;
@@ -117,7 +86,6 @@ main {
 	color: #9c9c9c;
 	z-index: 4;
 }
-
 
 .progress {
 	background-color: $gray-dark;

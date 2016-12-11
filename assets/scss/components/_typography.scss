@@ -7,6 +7,7 @@ html {
 body {
 	font-family: 'Open Sans', Verdana, Arial, sans-serif;
 	font-size: 1em;
+	line-height: 1.4;
 }
 
 p {
@@ -34,4 +35,36 @@ header p {
 	}
 }
 
+.word-item:nth-child(2) {
+	min-height: 10vh;
+	font-size: 11.8vh;
+	line-height: 1.1;
+	@media screen and (max-width: $iph6-w) and (orientation: portrait) {
+		font-size: 3.8rem;
+	}
+	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
+		border-bottom: 2px black dotted;
+		font-size: 3.2rem;
+	}
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		font-size: 1.2rem;
+	}
 
+}
+
+.word-item {
+	width: 80%;
+	margin: 20px;
+	clear: left;
+	font-size: 1.04rem;
+	@media screen and (max-width: $sgal-w) and (orientation: portrait) {
+		font-size: 0.85rem;
+	}
+	@media screen and (max-width: $iph4-w) and (orientation: portrait) {
+		font-size: 0.75rem;
+	}
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		font-size: 0.75rem;
+		margin: 5px 5px 0 20px;
+	}
+}
