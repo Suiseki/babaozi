@@ -84,22 +84,17 @@
 			this.search_button.addEventListener('click', this.processQuery.bind(this, null));
 			this.hamburger_icon.addEventListener('click', this.animateSidebar.bind(this), false);
 			
-			//in ES6 change var to let - this make closure
-			//todo zmniejszyć ilość eventów
-			for (var i = 0; i < this.range_btns.length; i++) {
-				(function iteration_var_fix(obj_side, j){
-							console.log("doddany ev: ");
-							obj_side.range_btns[j].addEventListener('click', function range_contract (){
-								// console.log("kliknięto range: ", i*100, i*100+99);
-								obj_side.starting_word = j*100;
-								obj_side.last_word = j*100+99;
-								obj_side.draw_element('char');
-								obj_side.menu_trigger = false;
-								obj_side.sbr_nav.className += " sideMenuOut";
-								obj_side.sbr_nav.classList.remove("sideMenuIn");
-							}.bind(obj_side), false);
-					})(this, i);
-			}
+			this.sbr_nav.addEventListener('click', function(e){
+				var range_extracted = e.target.innerHTML.split('-');
+				this.starting_word = parseInt(range_extracted[0]);
+				this.last_word = parseInt(range_extracted[1]);
+				console.log("range sidebar: ",this.starting_word,this.last_word);
+				this.draw_element('char');
+				this.menu_trigger = false;
+				this.sbr_nav.className += " sideMenuOut";
+				this.sbr_nav.classList.remove("sideMenuIn");
+			}.bind(this), false);
+
 		},
 		fill_output: function (fill_type) {
 			clearTimeout(this.later_answer);
@@ -134,11 +129,8 @@
 			this.fill_output('char');
 		},
 		draw_element: function (btn_hit) {
-
-			// console.log("draw zasięg: " + this.starting_word, this.last_word);
 			this.last_word = this.last_word === this.words_count ? this.last_word : 99;
 			var rand_last = Math.random() * this.last_word;
-
 			this.current_id = btn_hit !== 0 ? Math.floor( this.starting_word + rand_last) : 0;
 			this.fill_output(btn_hit);
 		},
