@@ -16,11 +16,15 @@ Various development approaches will be left for comparison purposes.
 
 ### Impemented patterns
 - Object Literal
-
-### Planned patterns
 - Module Pattern
 - Revealing Module Pattern
+
+### Planned patterns
 - Constructor Pattern
+
+### Planned changes
+- ES6 syntax
+- npm scripts for building process
 
 ### Credits
 * [Bartosz Kamiński](https://twitter.com/Suiseki)
