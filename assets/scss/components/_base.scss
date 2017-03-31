@@ -45,11 +45,18 @@ header {
 	height: $header-h;
 	width: 100%;
 	min-height: $min-header-h;
-	font-size: 1em;
-	padding: 8px 45px;
+	font-size: 1.05em;
+	padding: 14px 45px 0 45px;
 	box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
 	background-color: $header-color;
 	z-index: 1;
+	@media screen and (min-height: $iph5-h) and (orientation: portrait) {
+		padding-top:20px;
+	}
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		padding-top:10px;
+	}
+
 }
 
 

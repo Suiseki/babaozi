@@ -125,12 +125,18 @@ ul.sidebar-nav{
 	list-style-type: none;
 	transition-duration: 0.3s;
 	height: 20px;
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		top:1px;
+	}
 }
 
 
 ul.sideMenuIn{
 	right: 0;
 	transition-duration: 0.3s;
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		right: 7vw;
+	}
 }
 
 
@@ -212,6 +218,10 @@ ul.sidebar-nav li button {
 	border-radius: 5px;
 	border-bottom: 1px solid #292f3e;
 	padding: 7px;
+	@media screen and (max-height: $iph4-h) and (orientation: landscape) {
+		height: 25px;
+		padding: 0;
+	}
 }
 
 ul.sidebar-nav li button:active {
