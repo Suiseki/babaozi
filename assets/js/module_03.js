@@ -5,11 +5,11 @@
 var baoapp = (function(){
 
 
-			var words_count = Object.keys(data.glossary.items).length;
+			var last_word, words_count;
 			var current_id =0;
 				//manage word range selector
 			var starting_word = 0;
-			var last_word = words_count;
+
 			var menu_trigger = false;
 			var later_answer;
 
@@ -45,15 +45,22 @@ var baoapp = (function(){
 			var hamburger_icon = document.querySelector('#hamburger-side');
 			var sbr_nav = document.querySelector('.sidebar-nav');
 			var range_btns = document.querySelectorAll('aside li');
+			var data_local;
 
-			var bindEvents = function () {
-				char.addEventListener('click', function (){draw_element("char")}, false);
-				draw_pron.addEventListener('click', function (){draw_element('pron')}, false);
-				draw_transl.addEventListener('click', function (){draw_element('transl')}, false);
-				answer.addEventListener('click', function (){fill_output('show_answer')}, false);
-				prev_btn.addEventListener('click', function (){make_step(-1)}, false);
-				first_btn.addEventListener('click', function (){draw_element(0)}, false);
-				next_btn.addEventListener('click', function (){make_step(1)}, false);
+			var bindEvents = function (data) {
+				words_count = Object.keys(data.glossary.items).length;
+				last_word = words_count;
+				data_local = data;
+
+				char.addEventListener('click', function (){draw_element("char", data)}, false);
+				draw_pron.addEventListener('click', function (){draw_element('pron', data)}, false);
+				draw_transl.addEventListener('click', function (){draw_element('transl', data)}, false);
+				answer.addEventListener('click', function (){
+					fill_output('show_answer', data)
+				}, false);
+				prev_btn.addEventListener('click', function (){make_step(-1, data)}, false);
+				first_btn.addEventListener('click', function (){draw_element(0, data)}, false);
+				next_btn.addEventListener('click', function (){make_step(1, data)}, false);
 				modal.addEventListener('click', function (){closeModal()}, false);
 
 				word_to_search.addEventListener('keyup', function (e){
@@ -77,15 +84,15 @@ var baoapp = (function(){
 					starting_word = parseInt(range_extracted[0]);
 					last_word = parseInt(range_extracted[1]);
 					console.log("range sidebar: ",starting_word,last_word);
-					draw_element('char');
+					draw_element('char', data);
 					menu_trigger = false;
 					sbr_nav.className += " sideMenuOut";
 					sbr_nav.classList.remove("sideMenuIn");
 				}.bind(this), false);
-				fill_output('char');
+				fill_output('char', data);
 			}
 
-			var make_step = function (step) {
+			var make_step = function (step, data) {
 				current_id += (current_id < words_count) ? step : 0;
 				if (current_id < 0){
 					current_id = words_count-1;
@@ -94,18 +101,18 @@ var baoapp = (function(){
 						current_id = 0;
 					}
 				};
-				fill_output('char');
+				fill_output('char', data);
 			}
 
-			var draw_element = function (btn_hit) {
+			var draw_element = function (btn_hit, data) {
 				last_word = last_word === words_count ? last_word : 99;
 				var rand_last = Math.random() * last_word;
 				current_id = btn_hit !== 0 ? Math.floor( starting_word + rand_last) : 0;
 				console.log("draw current_id: ", current_id);
-				fill_output(btn_hit);
+				fill_output(btn_hit, data);
 			}
 
-			var fill_output = function (fill_type) {
+			var fill_output = function (fill_type, data) {
 				clearTimeout(later_answer);
 				var ctrl = {
 					'char': [true, false, false],
@@ -129,7 +136,7 @@ var baoapp = (function(){
 
 		var postpone_answer = function () {
 			later_answer = window.setTimeout(function(){
-				fill_output('show_answer');
+				fill_output('show_answer', data_local);
 			},6000);
 
 		}
@@ -148,8 +155,6 @@ var baoapp = (function(){
 		}
 
 		var processQuery = function (s_value) {
-			//console.log("s_value: " + s_value, typeof s_value);
-			//
 			var search_val =  s_value || word_to_search.value;
 			if (isNaN(search_val) || search_val.length === 0) {
 				// find among chinese character range of unicode 
@@ -157,8 +162,8 @@ var baoapp = (function(){
 					var results_array = [];
 					
 					//search whole characters base
-					for (var i=0; i < data.glossary.items.length; i++) {
-						if (data.glossary.items[i].characters.indexOf(search_val) !== -1) {
+					for (var i=0; i < data_local.glossary.items.length; i++) {
+						if (data_local.glossary.items[i].characters.indexOf(search_val) !== -1) {
 							results_array.push(i);
 						}
 					}
@@ -170,9 +175,9 @@ var baoapp = (function(){
 
 					var result_characters = results_array.forEach(function(el){
 						srch_res.innerHTML += '<div id="'+el+'"">' +
-						 data.glossary.items[el].characters +
+						 data_local.glossary.items[el].characters +
 						  '</div>';
-						//console.log("el: " + data.glossary.items[el].characters);
+						//console.log("el: " + data_local.glossary.items[el].characters);
 					}.bind(this));
 
 
@@ -183,15 +188,14 @@ var baoapp = (function(){
 			} else {
 				//items is an array, subtract 1 to get first element
 				current_id = Number(search_val)-1;
-				fill_output('show_answer');
-				// console.log("pobrany: ", data.glossary.items[current_id].pron);
+				fill_output('show_answer', data_local);
+				// console.log("pobrany: ", data_local.glossary.items[current_id].pron);
 				
 			}
 
 		}
 
 		var closeModal = function () {
-			console.log("close modal ");
 			while(srch_res.firstChild){
 				srch_res.removeChild(srch_res.firstChild);
 			}
@@ -214,6 +218,26 @@ var baoapp = (function(){
 
 })();
 
-baoapp.init();
-baoapp.draw("transl");
 
+function getJsonDict (file, callback) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', file);
+
+	xhr.onreadystatechange = function() {
+
+		if(xhr.readyState == 4){
+			if(callback) {
+				var data = JSON.parse(xhr.responseText);
+				callback(data)
+			}
+		}
+	};
+
+	xhr.send(); 
+}
+
+getJsonDict('./data/hsk-test.json', function(data){
+
+	baoapp.init(data);
+	baoapp.draw("transl", data);
+})

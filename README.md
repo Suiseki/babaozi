@@ -1,15 +1,16 @@
 # BaBaozi - simple flashcards
 https://suiseki.github.io/babaozi/
-This is a simple app, based a flash version i wrote few year ago. All cards are stored in a text file. User clicks several buttons to draw a card and show chinese characters, pronunciation or translation
+
+This is a simple app, based on a flash version i wrote few year ago. All cards are stored in a text file. User clicks several buttons to draw a card and show chinese characters, pronunciation or translation
 
 ## Feature list
 - parse json character base
-- draw random chinese word
+- draw random Chinese word
 - draw random pronunciation
 - draw random translation
-- show first, next and previous word in dictionary
+- show first, next and previous word in the dictionary
 - search by word index or by character
-- find all occurences of searched chinese characters
+- find all occurrences of searched Chinese characters
 
 ## Javascript conventions
 One of the purposes I this project is to try some coding concepts in practice. I started with basic vanilla javascript and after adding all functionality I wanted to express this using design patterns.
