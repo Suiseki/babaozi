@@ -16,7 +16,7 @@ This is a simple app, based on a flash version I wrote a few years ago. All card
 One of the purposes I this project is to try some coding concepts in practice. I started with basic vanilla javascript and after adding all functionality I wanted to express this using design patterns.
 Various development approaches will be left for comparison purposes.
 
-### Impemented patterns
+### Implemented patterns
 - Object Literal
 - Module Pattern
 - Revealing Module Pattern
